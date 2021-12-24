@@ -130,20 +130,30 @@ class HomeScreen extends StatelessWidget {
         children: [
           Container(
             height: 100,
-            color: Colors.blue,
+            color: Colors.black87,
             child: Center(
-              child: Text('Header'),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Again"),
+                  Spacer(
+                    flex: 1,
+                  ),
+                  //Text('Header'),
+                  Image.asset('lib/images/barBLogoCrop.png'),
+
+                  Spacer(
+                    flex: 1,
+                  ),
+                  Text("third"),
+                ],
+              ),
             ),
           ),
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(
-                //background image
-                image: AssetImage("lib/images/bg4.jpg"),
-                //fits image to box
-                fit: BoxFit.fill,
-                alignment: Alignment.topCenter,
-              ),
+              color: Colors.black87,
+              
             ),
             height: 500,
             // color: Colors.amber,
@@ -219,15 +229,263 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
 
+                //////////////////// Events CARD/////////////////////////
+                Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  //shadowColor: Colors.pink,
+                  //allows the card to be clickable by using InkWell
+                  child: new InkWell(
+                    //when tapped
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        //sends from button to whatever page is inputted
+                        MaterialPageRoute(builder: (context) => Menu()),
+                      );
+                    },
+                    //creates a backgroundd image that is nested inside of the inkwell
+                    child: Container(
+                      //box decoration allows for images to be inserted
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          //background image
+                          image: AssetImage("lib/images/events1.jpg"),
+                          //fits image to box
+                          fit: BoxFit.fill,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
+                      //THIS LAYERS TEXT ONTOP OF THE IMAGE
+                      child: Center(
+                          child: Text(
+                        "Events",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          //puts a shadow behind the text to make it pop
+                          shadows: [
+                            //implemented two shadows to cover up && down
+                            //as well as left && right (dx & dy)
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 3.0,
+                              offset: Offset(5.0, 5.0),
+                            ),
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 3.0,
+                              offset: Offset(-5.0, -5.0),
+                            ),
+                          ],
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          foreground: Paint()
+                            ..style = PaintingStyle.fill
+                            ..strokeWidth = 3
+                            ..color = Colors.white,
+                        ),
+                      )),
+                    ),
+                  ),
+                ),
+                //////////////////// Photos CARD/////////////////////////
+                Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  //shadowColor: Colors.pink,
+                  //allows the card to be clickable by using InkWell
+                  child: new InkWell(
+                    //when tapped
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        //sends from button to whatever page is inputted
+                        MaterialPageRoute(builder: (context) => Menu()),
+                      );
+                    },
+                    //creates a backgroundd image that is nested inside of the inkwell
+                    child: Container(
+                      //box decoration allows for images to be inserted
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          //background image
+                          image: AssetImage("lib/images/barMenu.jpg"),
+                          //fits image to box
+                          fit: BoxFit.fill,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
+                      //THIS LAYERS TEXT ONTOP OF THE IMAGE
+                      child: Center(
+                          child: Text(
+                        "Photos",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          //puts a shadow behind the text to make it pop
+                          shadows: [
+                            //implemented two shadows to cover up && down
+                            //as well as left && right (dx & dy)
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 3.0,
+                              offset: Offset(5.0, 5.0),
+                            ),
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 3.0,
+                              offset: Offset(-5.0, -5.0),
+                            ),
+                          ],
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          foreground: Paint()
+                            ..style = PaintingStyle.fill
+                            ..strokeWidth = 3
+                            ..color = Colors.white,
+                        ),
+                      )),
+                    ),
+                  ),
+                ),
+                //////////////////// About CARD/////////////////////////
+                Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  //shadowColor: Colors.pink,
+                  //allows the card to be clickable by using InkWell
+                  child: new InkWell(
+                    //when tapped
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        //sends from button to whatever page is inputted
+                        MaterialPageRoute(builder: (context) => Menu()),
+                      );
+                    },
+                    //creates a backgroundd image that is nested inside of the inkwell
+                    child: Container(
+                      //box decoration allows for images to be inserted
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          //background image
+                          image: AssetImage("lib/images/barMenu.jpg"),
+                          //fits image to box
+                          fit: BoxFit.fill,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
+                      //THIS LAYERS TEXT ONTOP OF THE IMAGE
+                      child: Center(
+                          child: Text(
+                        "About Bar-B",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          //puts a shadow behind the text to make it pop
+                          shadows: [
+                            //implemented two shadows to cover up && down
+                            //as well as left && right (dx & dy)
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 3.0,
+                              offset: Offset(5.0, 5.0),
+                            ),
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 3.0,
+                              offset: Offset(-5.0, -5.0),
+                            ),
+                          ],
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          foreground: Paint()
+                            ..style = PaintingStyle.fill
+                            ..strokeWidth = 3
+                            ..color = Colors.white,
+                        ),
+                      )),
+                    ),
+                  ),
+                ),
+                //////////////////// contact CARD/////////////////////////
+                Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  //shadowColor: Colors.pink,
+                  //allows the card to be clickable by using InkWell
+                  child: new InkWell(
+                    //when tapped
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        //sends from button to whatever page is inputted
+                        MaterialPageRoute(builder: (context) => Menu()),
+                      );
+                    },
+                    //creates a backgroundd image that is nested inside of the inkwell
+                    child: Container(
+                      //box decoration allows for images to be inserted
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          //background image
+                          image: AssetImage("lib/images/barMenu.jpg"),
+                          //fits image to box
+                          fit: BoxFit.fill,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
+                      //THIS LAYERS TEXT ONTOP OF THE IMAGE
+                      child: Center(
+                          child: Text(
+                        "Contact Us",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          //puts a shadow behind the text to make it pop
+                          shadows: [
+                            //implemented two shadows to cover up && down
+                            //as well as left && right (dx & dy)
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 3.0,
+                              offset: Offset(5.0, 5.0),
+                            ),
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 3.0,
+                              offset: Offset(-5.0, -5.0),
+                            ),
+                          ],
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          foreground: Paint()
+                            ..style = PaintingStyle.fill
+                            ..strokeWidth = 3
+                            ..color = Colors.white,
+                        ),
+                      )),
+                    ),
+                  ),
+                ),
+
                 ////////////////////////////////////////////////////////////
               ],
             ),
           ),
           Container(
             height: constraints.maxHeight - 600,
-            color: Colors.lightGreen,
+            color: Colors.black87,
             child: Center(
-              child: Text('Footer'),
+              child: Text(
+                'Footer',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           )
         ],
