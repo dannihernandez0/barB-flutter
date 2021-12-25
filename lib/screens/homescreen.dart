@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/CardTemplate.dart';
+import 'package:flutter_application_1/models/helperUtil.dart';
 import 'package:flutter_application_1/screens/menu.dart';
 
 class HomeScreen extends StatelessWidget {
+  //ListCategory
+  List<CardTemplate> cardCustom = HelperUtil.getMockCards();
+  //
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: LayoutBuilder(builder: (context, constraints) {
@@ -49,72 +55,107 @@ class HomeScreen extends StatelessWidget {
                 //separates the right column into segments
                 child: Column(
                   children: <Widget>[
+                    //bar-b logo
                     Image.asset('lib/images/barBLowQual.png'),
-                    Text("hello"),
-                    //
+
                     //Container inserts the section where buttons will be in
 
                     Container(
                       //expanded widget will fill column without overflow
                       child: Expanded(
                         //grid will display each button and route them to each page.
-                        child: GridView.count(
-                          //childAspectRatio has been included to manually adjust the size
-                          //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
+                        child: ListView.builder(
+                            //childAspectRatio has been included to manually adjust the size
+                            //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
 
-                          childAspectRatio: 10 / 1.8,
-                          crossAxisCount: 1,
-                          children: [
-                            //access the menu page
-                            Card(
-                                child: Center(
-                                  child: Text("Menu"),
+                            itemCount: cardCustom.length,
+                            itemBuilder: (BuildContext ctx, int index) {
+                              return Container(
+                                margin: EdgeInsets.all(5),
+                                height: 75,
+                                child: Stack(
+                                  children: [
+                                    //POSITON.FILL ensures the widget is completely filled in the area
+
+                                    Positioned.fill(
+                                      //CLIPRRECT rounds corners
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        //populates the image for each entry
+                                        child: Image.asset(
+                                          'lib/images/' +
+                                              cardCustom[index].image,
+                                          //fills in photo to cover area
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+
+                                    //positions the gradient over the actual photo
+                                    Positioned(
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: Container(
+                                        height: 120,
+                                        decoration: BoxDecoration(
+                                          //border radius adds theborder and gradient leveled
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10),
+                                          ),
+                                          //adds a gradient over the card
+                                          gradient: LinearGradient(
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter,
+                                            colors: [
+                                              Colors.black.withOpacity(0.7),
+                                              Colors.transparent,
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  cardCustom[index]
+                                                      .destination),
+                                        );
+                                      },
+                                      //inserts name
+                                      child: Row(
+                                        //centers the text horizontally
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            child: Center(
+                                              child: Text(
+                                                cardCustom[index].name,
+                                                textAlign: TextAlign.center,
+                                                //edits the style of the font imprted from class
+                                                style: TextStyle(
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  foreground: Paint()
+                                                    ..style = PaintingStyle.fill
+                                                    ..strokeWidth = 3
+                                                    ..color = Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                elevation: 8,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                )),
-                            //access the events page
-                            Card(
-                                child: Center(
-                                  child: Center(
-                                    child: Text("Events"),
-                                  ),
-                                ),
-                                elevation: 8,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                )),
-                            //ACESS THE PHOTOS page
-                            Card(
-                                child: Center(
-                                  child: Text("Photos"),
-                                ),
-                                elevation: 8,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                )),
-                            //access about Bar-B page
-                            Card(
-                                //centers the test inside of the menu
-                                child: Center(
-                                  child: Text("About Bar-B"),
-                                ),
-                                elevation: 8,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                )),
-                            //access Contact Us page
-                            Card(
-                                child: Center(
-                                  child: Text("Contact Us"),
-                                ),
-                                elevation: 8,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                )),
-                          ],
-                        ),
+                              );
+                            }),
                       ),
                     ),
                   ],
@@ -153,330 +194,99 @@ class HomeScreen extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: Colors.black87,
-              
             ),
             height: 500,
             // color: Colors.amber,
             // constraints: BoxConstraints.expand(),
-            child: GridView.count(
-              //childAspectRatio has been included to manually adjust the size
-              //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
+            child: ListView.builder(
+                //childAspectRatio has been included to manually adjust the size
+                //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
 
-              childAspectRatio: 10 / 1.8,
-              crossAxisCount: 1,
-              children: [
-                //access the menu page
+                itemCount: cardCustom.length,
+                itemBuilder: (BuildContext ctx, int index) {
+                  return Container(
+                    margin: EdgeInsets.all(5),
+                    height: 75,
+                    child: Stack(
+                      children: [
+                        //POSITON.FILL ensures the widget is completely filled in the area
 
-                //////////////////// MENU CARD/////////////////////////
-                Card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  //shadowColor: Colors.pink,
-                  //allows the card to be clickable by using InkWell
-                  child: new InkWell(
-                    //when tapped
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        //sends from button to whatever page is inputted
-                        MaterialPageRoute(builder: (context) => Menu()),
-                      );
-                    },
-                    //creates a backgroundd image that is nested inside of the inkwell
-                    child: Container(
-                      //box decoration allows for images to be inserted
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          //background image
-                          image: AssetImage("lib/images/barMenu.jpg"),
-                          //fits image to box
-                          fit: BoxFit.fill,
-                          alignment: Alignment.topCenter,
-                        ),
-                      ),
-                      //THIS LAYERS TEXT ONTOP OF THE IMAGE
-                      child: Center(
-                          child: Text(
-                        "Menu",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          //puts a shadow behind the text to make it pop
-                          shadows: [
-                            //implemented two shadows to cover up && down
-                            //as well as left && right (dx & dy)
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(5.0, 5.0),
+                        Positioned.fill(
+                          //CLIPRRECT rounds corners
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            //populates the image for each entry
+                            child: Image.asset(
+                              'lib/images/' + cardCustom[index].image,
+                              //fills in photo to cover area
+                              fit: BoxFit.cover,
                             ),
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(-5.0, -5.0),
-                            ),
-                          ],
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()
-                            ..style = PaintingStyle.fill
-                            ..strokeWidth = 3
-                            ..color = Colors.white,
+                          ),
                         ),
-                      )),
-                    ),
-                  ),
-                ),
 
-                //////////////////// Events CARD/////////////////////////
-                Card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  //shadowColor: Colors.pink,
-                  //allows the card to be clickable by using InkWell
-                  child: new InkWell(
-                    //when tapped
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        //sends from button to whatever page is inputted
-                        MaterialPageRoute(builder: (context) => Menu()),
-                      );
-                    },
-                    //creates a backgroundd image that is nested inside of the inkwell
-                    child: Container(
-                      //box decoration allows for images to be inserted
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          //background image
-                          image: AssetImage("lib/images/events1.jpg"),
-                          //fits image to box
-                          fit: BoxFit.fill,
-                          alignment: Alignment.topCenter,
-                        ),
-                      ),
-                      //THIS LAYERS TEXT ONTOP OF THE IMAGE
-                      child: Center(
-                          child: Text(
-                        "Events",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          //puts a shadow behind the text to make it pop
-                          shadows: [
-                            //implemented two shadows to cover up && down
-                            //as well as left && right (dx & dy)
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(5.0, 5.0),
+                        //positions the gradient over the actual photo
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            height: 120,
+                            decoration: BoxDecoration(
+                              //border radius adds theborder and gradient leveled
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              //adds a gradient over the card
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                colors: [
+                                  Colors.black.withOpacity(0.7),
+                                  Colors.transparent,
+                                ],
+                              ),
                             ),
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(-5.0, -5.0),
-                            ),
-                          ],
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()
-                            ..style = PaintingStyle.fill
-                            ..strokeWidth = 3
-                            ..color = Colors.white,
+                          ),
                         ),
-                      )),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      cardCustom[index].destination),
+                            );
+                          },
+                          //inserts name
+                          child: Row(
+                            //centers the text horizontally
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                child: Center(
+                                  child: Text(
+                                    cardCustom[index].name,
+                                    textAlign: TextAlign.center,
+                                    //edits the style of the font imprted from class
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      foreground: Paint()
+                                        ..style = PaintingStyle.fill
+                                        ..strokeWidth = 3
+                                        ..color = Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                //////////////////// Photos CARD/////////////////////////
-                Card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  //shadowColor: Colors.pink,
-                  //allows the card to be clickable by using InkWell
-                  child: new InkWell(
-                    //when tapped
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        //sends from button to whatever page is inputted
-                        MaterialPageRoute(builder: (context) => Menu()),
-                      );
-                    },
-                    //creates a backgroundd image that is nested inside of the inkwell
-                    child: Container(
-                      //box decoration allows for images to be inserted
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          //background image
-                          image: AssetImage("lib/images/barMenu.jpg"),
-                          //fits image to box
-                          fit: BoxFit.fill,
-                          alignment: Alignment.topCenter,
-                        ),
-                      ),
-                      //THIS LAYERS TEXT ONTOP OF THE IMAGE
-                      child: Center(
-                          child: Text(
-                        "Photos",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          //puts a shadow behind the text to make it pop
-                          shadows: [
-                            //implemented two shadows to cover up && down
-                            //as well as left && right (dx & dy)
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(5.0, 5.0),
-                            ),
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(-5.0, -5.0),
-                            ),
-                          ],
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()
-                            ..style = PaintingStyle.fill
-                            ..strokeWidth = 3
-                            ..color = Colors.white,
-                        ),
-                      )),
-                    ),
-                  ),
-                ),
-                //////////////////// About CARD/////////////////////////
-                Card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  //shadowColor: Colors.pink,
-                  //allows the card to be clickable by using InkWell
-                  child: new InkWell(
-                    //when tapped
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        //sends from button to whatever page is inputted
-                        MaterialPageRoute(builder: (context) => Menu()),
-                      );
-                    },
-                    //creates a backgroundd image that is nested inside of the inkwell
-                    child: Container(
-                      //box decoration allows for images to be inserted
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          //background image
-                          image: AssetImage("lib/images/barMenu.jpg"),
-                          //fits image to box
-                          fit: BoxFit.fill,
-                          alignment: Alignment.topCenter,
-                        ),
-                      ),
-                      //THIS LAYERS TEXT ONTOP OF THE IMAGE
-                      child: Center(
-                          child: Text(
-                        "About Bar-B",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          //puts a shadow behind the text to make it pop
-                          shadows: [
-                            //implemented two shadows to cover up && down
-                            //as well as left && right (dx & dy)
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(5.0, 5.0),
-                            ),
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(-5.0, -5.0),
-                            ),
-                          ],
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()
-                            ..style = PaintingStyle.fill
-                            ..strokeWidth = 3
-                            ..color = Colors.white,
-                        ),
-                      )),
-                    ),
-                  ),
-                ),
-                //////////////////// contact CARD/////////////////////////
-                Card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  //shadowColor: Colors.pink,
-                  //allows the card to be clickable by using InkWell
-                  child: new InkWell(
-                    //when tapped
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        //sends from button to whatever page is inputted
-                        MaterialPageRoute(builder: (context) => Menu()),
-                      );
-                    },
-                    //creates a backgroundd image that is nested inside of the inkwell
-                    child: Container(
-                      //box decoration allows for images to be inserted
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          //background image
-                          image: AssetImage("lib/images/barMenu.jpg"),
-                          //fits image to box
-                          fit: BoxFit.fill,
-                          alignment: Alignment.topCenter,
-                        ),
-                      ),
-                      //THIS LAYERS TEXT ONTOP OF THE IMAGE
-                      child: Center(
-                          child: Text(
-                        "Contact Us",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          //puts a shadow behind the text to make it pop
-                          shadows: [
-                            //implemented two shadows to cover up && down
-                            //as well as left && right (dx & dy)
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(5.0, 5.0),
-                            ),
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 3.0,
-                              offset: Offset(-5.0, -5.0),
-                            ),
-                          ],
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()
-                            ..style = PaintingStyle.fill
-                            ..strokeWidth = 3
-                            ..color = Colors.white,
-                        ),
-                      )),
-                    ),
-                  ),
-                ),
-
-                ////////////////////////////////////////////////////////////
-              ],
-            ),
+                  );
+                }),
           ),
           Container(
             height: constraints.maxHeight - 600,
