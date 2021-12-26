@@ -17,7 +17,7 @@ class Photos extends StatelessWidget {
                   width: constraints.maxWidth * 0.75,
                   color: Colors.blueAccent,
                   child: Center(
-                    child: Text('Header'),
+                    child: Text('Photos'),
                   ),
                 ),
                 Container(
@@ -131,7 +131,7 @@ class Photos extends StatelessWidget {
             height: 100,
             color: Colors.blue,
             child: Center(
-              child: Text('Header'),
+              child: Text('Photos'),
             ),
           ),
           Container(

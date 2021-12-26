@@ -17,7 +17,7 @@ class Menu extends StatelessWidget {
                   width: constraints.maxWidth * 0.75,
                   color: Colors.blueAccent,
                   child: Center(
-                    child: Text('Header'),
+                    child: Text('Menu'),
                   ),
                 ),
                 Container(
@@ -131,7 +131,7 @@ class Menu extends StatelessWidget {
             height: 100,
             color: Colors.blue,
             child: Center(
-              child: Text('Header'),
+              child: Text('Menu'),
             ),
           ),
           Container(

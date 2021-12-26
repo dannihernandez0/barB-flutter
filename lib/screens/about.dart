@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
-
-
-
-
-
 class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +17,7 @@ class About extends StatelessWidget {
                   width: constraints.maxWidth * 0.75,
                   color: Colors.blueAccent,
                   child: Center(
-                    child: Text('Header'),
+                    child: Text('About'),
                   ),
                 ),
                 Container(
@@ -138,7 +131,7 @@ class About extends StatelessWidget {
             height: 100,
             color: Colors.blue,
             child: Center(
-              child: Text('Header'),
+              child: Text('About'),
             ),
           ),
           Container(

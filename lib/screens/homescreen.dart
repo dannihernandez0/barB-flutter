@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                   width: constraints.maxWidth * 0.75,
                   color: Colors.blueAccent,
                   child: Center(
-                    child: Text('Header'),
+                    child: Text('HomeScreen'),
                   ),
                 ),
                 Container(
