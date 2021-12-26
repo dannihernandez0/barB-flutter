@@ -1,5 +1,11 @@
 import 'package:flutter_application_1/models/CardTemplate.dart';
+//import 'package:flutter_application_1/screens/homescreen.dart';
 import 'package:flutter_application_1/screens/menu.dart';
+import 'package:flutter_application_1/screens/events.dart';
+import 'package:flutter_application_1/screens/photos.dart';
+import 'package:flutter_application_1/screens/about.dart';
+import 'package:flutter_application_1/screens/info.dart';
+
 
 class HelperUtil {
   static List<CardTemplate> getMockCards() {
@@ -17,7 +23,7 @@ class HelperUtil {
           name: "Events",
           image: 'events1.jpg',
           subCards: [],
-          destination: Menu()),
+          destination: Events()),
       ///////Events card
       ///
       ///////Photos card
@@ -25,7 +31,7 @@ class HelperUtil {
           name: "Photos",
           image: 'events1.jpg',
           subCards: [],
-          destination: Menu()),
+          destination: Photos()),
       ///////Photo card
       ///
       ///////About card
@@ -33,7 +39,7 @@ class HelperUtil {
           name: "About Us",
           image: 'events1.jpg',
           subCards: [],
-          destination: Menu()),
+          destination: About()),
       ///////About card
       ///
       ///////Contact card
@@ -41,7 +47,7 @@ class HelperUtil {
           name: "Contact Us",
           image: 'events1.jpg',
           subCards: [],
-          destination: Menu()),
+          destination: Info()),
       ///////Contact card
     ];
   }

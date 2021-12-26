@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Information extends StatelessWidget {
+class Info extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: LayoutBuilder(builder: (context, constraints) {
