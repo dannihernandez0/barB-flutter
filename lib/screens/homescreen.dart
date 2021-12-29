@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/CardTemplate.dart';
 import 'package:flutter_application_1/models/helperUtil.dart';
-import 'package:flutter_application_1/screens/menu.dart';
+//import 'package:flutter_application_1/screens/menu.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   //ListCategory
   List<CardTemplate> cardCustom = HelperUtil.getMockCards();
@@ -169,9 +170,18 @@ class HomeScreen extends StatelessWidget {
       // Samll screens
       return Column(
         children: [
-          Container(
+          Container(decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black87,
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
             height: 100,
-            color: Colors.black87,
+            //color: Colors.black87,
             child: Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -193,8 +203,15 @@ class HomeScreen extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.black87,
-            ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black87,
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
             height: 500,
             // color: Colors.amber,
             // constraints: BoxConstraints.expand(),
