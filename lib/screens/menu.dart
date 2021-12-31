@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/helperMenu.dart';
 import 'package:flutter_application_1/models/MenuTemplate.dart';
 
+
+// ignore: must_be_immutable
 class Menu extends StatelessWidget {
   //Domestic Beers
   List<MenuTemplate> domestics = HelperMenu.getDomestics();
