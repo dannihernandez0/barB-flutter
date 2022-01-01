@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/photoTemplate.dart'; //
+import 'package:flutter_application_1/models/helperPhoto.dart';
 import 'package:flutter_application_1/models/CardTemplate.dart';
 import 'package:flutter_application_1/models/helperUtil.dart';
+import 'package:flutter_application_1/screens/picDetails.dart';
 
+List<CardTemplate> cardCustom = HelperUtil.getMockCards();
 // ignore: must_be_immutable
 
 //ListCategory
-List<CardTemplate> cardCustom = HelperUtil.getMockCards();
+List<PhotoTemplate> pictures = HelperPhoto.getPictures();
 
 //
 class Photos extends StatelessWidget {
@@ -235,9 +239,38 @@ class Photos extends StatelessWidget {
                 ),
                 height: 500,
                 //organizes the list of list views besides using column
-                child: Placeholder(),
+                child: GridView.builder(
+                    itemCount: pictures.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5.0,
+                      mainAxisSpacing: 5.0,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return RawMaterialButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PicDetails(
+                                    imagePath: pictures[index].image,
+                                  ),),);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "lib/imagesforpage/" + pictures[index].image,
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
               ),
-              
+
               //////////////////////////////////////////////////////////
               ///
 
