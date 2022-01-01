@@ -253,7 +253,7 @@ class Photos extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => PicDetails(
-                                    imagePath: pictures[index].image,
+                                    imagePath: "imagesforpage/" + pictures[index].image,
                                   ),),);
                         },
                         child: Container(

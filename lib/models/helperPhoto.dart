@@ -50,4 +50,51 @@ class HelperPhoto {
       
     ];
   }
+
+
+
+static List<PhotoTemplate> getEvents() {
+    return [
+      ///////Customers card
+      PhotoTemplate(
+          type: "Event",
+          image: 'leather.jpg',
+          photoPics: [],
+      ///////Menu card
+      ),
+      ///////Customers card
+      PhotoTemplate(
+          type: "Event",
+          image: 'newyear.jpg',
+          photoPics: [],
+      ///////Menu card
+      ),///////Customers card
+      PhotoTemplate(
+          type: "Event",
+          image: 'pajama.jpg',
+          photoPics: [],
+      ///////Menu card
+      ///
+      ///
+      
+      ///
+      ),
+      //Customers card
+      PhotoTemplate(
+          type: "Event",
+          image: 'Sunday.jpg',
+          photoPics: [],
+      ///////Menu card
+      ),
+      ///////Customers card
+      PhotoTemplate(
+          type: "Event",
+          image: 'Thursday.jpg',
+          photoPics: [],
+      ///////Menu card
+      ),
+      
+    ];
+  }
+
 }
