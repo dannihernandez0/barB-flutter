@@ -25,7 +25,7 @@ class PicDetails extends StatelessWidget {
                         )),
                     image: DecorationImage(
                       image: AssetImage("lib/" + imagePath),
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.fitHeight,
                     ),
                   ),
                 ),

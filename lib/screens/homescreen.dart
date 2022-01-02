@@ -8,11 +8,12 @@ class HomeScreen extends StatelessWidget {
   //ListCategory
   List<CardTemplate> cardCustom = HelperUtil.getMockCards();
   //
+  Color barBBlack = Colors.black87;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: LayoutBuilder(builder: (context, constraints) {
-      // Large screens (tablet on landscape mode, desktop, TV)
+ // Large screens (tablet on landscape mode, desktop, TV)
 /******************************************************************************/
       if (constraints.maxWidth > 600) {
         return Row(
@@ -20,14 +21,42 @@ class HomeScreen extends StatelessWidget {
             //left side column
             Column(
               children: [
+                //TOP SECTION
                 Container(
-                  height: 100,
                   width: constraints.maxWidth * 0.75,
-                  color: Colors.blueAccent,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black87,
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  height: 100,
+                  //color: Colors.black87,
                   child: Center(
-                    child: Text('HomeScreen'),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Again"),
+                        Spacer(
+                          flex: 1,
+                        ),
+                        //Text('Header'),
+                        Image.asset('lib/images/barBLogoCrop.png'),
+
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Text("third"),
+                      ],
+                    ),
                   ),
                 ),
+
+                //MIDDLE SECTION
                 Container(
                   height: 500,
                   width: constraints.maxWidth * 0.75,
@@ -36,14 +65,18 @@ class HomeScreen extends StatelessWidget {
                     child: Text('Main Content'),
                   ),
                 ),
+
                 Container(
                   height: constraints.maxHeight - 600,
                   width: constraints.maxWidth * 0.75,
-                  color: Colors.lightGreen,
+                  color: Colors.black87,
                   child: Center(
-                    child: Text('Footer'),
+                    child: Text(
+                      'Footer',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
+                )
               ],
             ),
             //right size column
@@ -170,16 +203,17 @@ class HomeScreen extends StatelessWidget {
       // Samll screens
       return Column(
         children: [
-          Container(decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black87,
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
+          Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black87,
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
                 ),
+              ],
+            ),
             height: 100,
             //color: Colors.black87,
             child: Center(
@@ -203,15 +237,15 @@ class HomeScreen extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black87,
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black87,
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
                 ),
+              ],
+            ),
             height: 500,
             // color: Colors.amber,
             // constraints: BoxConstraints.expand(),
