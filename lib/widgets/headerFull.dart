@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_application_1/screens/homescreen.dart';
@@ -18,6 +19,9 @@ import "package:flutter_application_1/models/helperPhoto.dart";
 import 'package:flutter_application_1/screens/picDetails.dart';
 
 Color barBBlack = Colors.black87;
+
+var dateGetter = DateTime.now();
+var currentTime = DateFormat.E().format(dateGetter);
 
 //end card access pages
 //
@@ -485,13 +489,41 @@ class MenuListBuilder extends StatelessWidget {
                     Expanded(
                       //name of beverage
                       //font, color, size
-                      child: Text(type[index].name,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          )),
-                    ),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Spacer(),
+                            Text(type[index].name,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                )),
+                            Spacer(),
+                            ////////////////////////////
+                            Text("Current Price: " + type[index].price,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                )),
+                            Text("HH: " + type[index].happyHourPrice,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                )),
+                            /*Text(currentTime,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                )),*/
+                            Spacer(),
+                          ],
+                        ),
+                      ),
+                    )
                   ]),
                 ),
               ),
@@ -810,801 +842,7 @@ List<MenuTemplate> wineGlass = HelperMenu.getWineGlass();
 List<MenuTemplate> wineBottle = HelperMenu.getWineBottle();
 //shots
 List<MenuTemplate> shots = HelperMenu.getShots();
-
-class MenuList extends StatelessWidget {
-  final widthhh;
-  final heighttt;
-  const MenuList({this.widthhh, this.heighttt});
-
-  @override
-  Widget build(BuildContext context) {
-    return //MIDDLE SECTION
-
-        //////BODY PART
-        Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black87,
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      height: heighttt,
-      width: widthhh,
-
-      //organizes the list of list views besides using column
-      child: ListView(
-        children: [
-          //Second horizontal List
-
-          ///Domestics Heading
-          //////////////////////
-          Center(
-            child: Stack(
-              children: <Widget>[
-                // Stroked text as border.
-                Text(
-                  'DOMESTICS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 1
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.yellow,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, -2.0))
-                      ]),
-                ),
-                Text(
-                  'DOMESTICS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 0.5
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.red,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, 4.0)),
-                        Shadow(
-                            color: Colors.blue,
-                            blurRadius: 2.0,
-                            offset: Offset(2.0, -2.0))
-                      ]),
-                ),
-              ],
-            ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: heighttt.maxHeight / 5),
-            child: ListView.builder(
-              //creates a list based on the incoming parameters
-              shrinkWrap: true,
-              //childAspectRatio has been included to manually adjust the size
-              //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
-
-              itemCount: domestics.length,
-              //allows list to be scrollable sideways
-              scrollDirection: Axis.horizontal,
-
-              itemBuilder: (BuildContext ctx, int index) {
-                return Container(
-                  margin: EdgeInsets.all(5),
-                  //creates constraints for card to form
-                  child: SizedBox(
-                    width: 250,
-                    //each card for each item
-                    child: Card(
-                      //card background
-                      color: Colors.black54,
-                      elevation: 10,
-                      shadowColor: Colors.grey,
-                      //rounds border of CARD
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(children: [
-                        //sets aspect ration to 1:1 , aka a square
-                        AspectRatio(
-                          //width: 160,
-                          aspectRatio: 1,
-                          //square image
-                          child: ClipRRect(
-                            //rounds corners of image
-                            borderRadius: BorderRadius.circular(10),
-                            //imports image from menu class
-                            child: Image.asset(
-                                "lib/images/" + domestics[index].image),
-                          ),
-                        ),
-                        //the text is right here
-                        Expanded(
-                          //name of beverage
-                          //font, color, size
-                          child: Text(domestics[index].name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              )),
-                        ),
-                      ]),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-
-          ///imports Heading
-          //////////////////////
-          Center(
-            child: Stack(
-              children: <Widget>[
-                // Stroked text as border.
-                Text(
-                  'IMPORTS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 1
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.yellow,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, -2.0))
-                      ]),
-                ),
-                Text(
-                  'IMPORTS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 0.5
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.red,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, 4.0)),
-                        Shadow(
-                            color: Colors.blue,
-                            blurRadius: 2.0,
-                            offset: Offset(2.0, -2.0))
-                      ]),
-                ),
-              ],
-            ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: heighttt.maxHeight / 5),
-            child: ListView.builder(
-              //creates a list based on the incoming parameters
-              shrinkWrap: true,
-              //childAspectRatio has been included to manually adjust the size
-              //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
-
-              itemCount: imports.length,
-              //allows list to be scrollable sideways
-              scrollDirection: Axis.horizontal,
-
-              itemBuilder: (BuildContext ctx, int index) {
-                return Container(
-                  margin: EdgeInsets.all(5),
-                  //creates constraints for card to form
-                  child: SizedBox(
-                    width: 250,
-                    //each card for each item
-                    child: Card(
-                      //card background
-                      color: Colors.black54,
-                      elevation: 10,
-                      shadowColor: Colors.grey,
-                      //rounds border of CARD
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(children: [
-                        //sets aspect ration to 1:1 , aka a square
-                        AspectRatio(
-                          //width: 160,
-                          aspectRatio: 1,
-                          //square image
-                          child: ClipRRect(
-                            //rounds corners of image
-                            borderRadius: BorderRadius.circular(10),
-                            //imports image from menu class
-                            child: Image.asset(
-                                "lib/images/" + imports[index].image),
-                          ),
-                        ),
-                        //the text is right here
-                        Expanded(
-                          //name of beverage
-                          //font, color, size
-                          child: Text(imports[index].name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              )),
-                        ),
-                      ]),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          //////////////////////
-
-          ///Martinis Heading
-          //////////////////////
-          Center(
-            child: Stack(
-              children: <Widget>[
-                // Stroked text as border.
-                Text(
-                  'MARTINIS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 1
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.yellow,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, -2.0))
-                      ]),
-                ),
-                Text(
-                  'MARTINIS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 0.5
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.red,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, 4.0)),
-                        Shadow(
-                            color: Colors.blue,
-                            blurRadius: 2.0,
-                            offset: Offset(2.0, -2.0))
-                      ]),
-                ),
-              ],
-            ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: heighttt.maxHeight / 5),
-            child: ListView.builder(
-              //creates a list based on the incoming parameters
-              shrinkWrap: true,
-              //childAspectRatio has been included to manually adjust the size
-              //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
-
-              itemCount: martinis.length,
-              //allows list to be scrollable sideways
-              scrollDirection: Axis.horizontal,
-
-              itemBuilder: (BuildContext ctx, int index) {
-                return Container(
-                  margin: EdgeInsets.all(5),
-                  //creates constraints for card to form
-                  child: SizedBox(
-                    width: 250,
-                    //each card for each item
-                    child: Card(
-                      //card background
-                      color: Colors.black54,
-                      elevation: 10,
-                      shadowColor: Colors.grey,
-                      //rounds border of CARD
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(children: [
-                        //sets aspect ration to 1:1 , aka a square
-                        AspectRatio(
-                          //width: 160,
-                          aspectRatio: 1,
-                          //square image
-                          child: ClipRRect(
-                            //rounds corners of image
-                            borderRadius: BorderRadius.circular(10),
-                            //imports image from menu class
-                            child: Image.asset(
-                                "lib/images/" + martinis[index].image),
-                          ),
-                        ),
-                        //the text is right here
-                        Expanded(
-                          //name of beverage
-                          //font, color, size
-                          child: Text(martinis[index].name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              )),
-                        ),
-                      ]),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          //////////////////////
-
-          ///Margaritas Heading
-          //////////////////////
-          Center(
-            child: Stack(
-              children: <Widget>[
-                // Stroked text as border.
-                Text(
-                  'MARGARITAS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 1
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.yellow,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, -2.0))
-                      ]),
-                ),
-                Text(
-                  'MARGARITAS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 0.5
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.red,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, 4.0)),
-                        Shadow(
-                            color: Colors.blue,
-                            blurRadius: 2.0,
-                            offset: Offset(2.0, -2.0))
-                      ]),
-                ),
-              ],
-            ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: heighttt.maxHeight / 5),
-            child: ListView.builder(
-              //creates a list based on the incoming parameters
-              shrinkWrap: true,
-              //childAspectRatio has been included to manually adjust the size
-              //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
-
-              itemCount: margaritas.length,
-              //allows list to be scrollable sideways
-              scrollDirection: Axis.horizontal,
-
-              itemBuilder: (BuildContext ctx, int index) {
-                return Container(
-                  margin: EdgeInsets.all(5),
-                  //creates constraints for card to form
-                  child: SizedBox(
-                    width: 250,
-                    //each card for each item
-                    child: Card(
-                      //card background
-                      color: Colors.black54,
-                      elevation: 10,
-                      shadowColor: Colors.grey,
-                      //rounds border of CARD
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(children: [
-                        //sets aspect ration to 1:1 , aka a square
-                        AspectRatio(
-                          //width: 160,
-                          aspectRatio: 1,
-                          //square image
-                          child: ClipRRect(
-                            //rounds corners of image
-                            borderRadius: BorderRadius.circular(10),
-                            //imports image from menu class
-                            child: Image.asset(
-                                "lib/images/" + margaritas[index].image),
-                          ),
-                        ),
-                        //the text is right here
-                        Expanded(
-                          //name of beverage
-                          //font, color, size
-                          child: Text(margaritas[index].name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              )),
-                        ),
-                      ]),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          //////////////////////
-          ///Wine Glasses Heading
-          //////////////////////
-          Center(
-            child: Stack(
-              children: <Widget>[
-                // Stroked text as border.
-                Text(
-                  'WINE GLASSES',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 1
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.yellow,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, -2.0))
-                      ]),
-                ),
-                Text(
-                  'WINE GLASSES',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 0.5
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.red,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, 4.0)),
-                        Shadow(
-                            color: Colors.blue,
-                            blurRadius: 2.0,
-                            offset: Offset(2.0, -2.0))
-                      ]),
-                ),
-              ],
-            ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: heighttt.maxHeight / 5),
-            child: ListView.builder(
-              //creates a list based on the incoming parameters
-              shrinkWrap: true,
-              //childAspectRatio has been included to manually adjust the size
-              //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
-
-              itemCount: wineGlass.length,
-              //allows list to be scrollable sideways
-              scrollDirection: Axis.horizontal,
-
-              itemBuilder: (BuildContext ctx, int index) {
-                return Container(
-                  margin: EdgeInsets.all(5),
-                  //creates constraints for card to form
-                  child: SizedBox(
-                    width: 250,
-                    //each card for each item
-                    child: Card(
-                      //card background
-                      color: Colors.black54,
-                      elevation: 10,
-                      shadowColor: Colors.grey,
-                      //rounds border of CARD
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(children: [
-                        //sets aspect ration to 1:1 , aka a square
-                        AspectRatio(
-                          //width: 160,
-                          aspectRatio: 1,
-                          //square image
-                          child: ClipRRect(
-                            //rounds corners of image
-                            borderRadius: BorderRadius.circular(10),
-                            //imports image from menu class
-                            child: Image.asset(
-                                "lib/images/" + wineGlass[index].image),
-                          ),
-                        ),
-                        //the text is right here
-                        Expanded(
-                          //name of beverage
-                          //font, color, size
-                          child: Text(wineGlass[index].name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              )),
-                        ),
-                      ]),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          //////////////////////
-          ///
-          ///Wine Bottle Heading
-          //////////////////////
-          Center(
-            child: Stack(
-              children: <Widget>[
-                // Stroked text as border.
-                Text(
-                  'WINE BOTTLES',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 1
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.yellow,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, -2.0))
-                      ]),
-                ),
-                Text(
-                  'WINE BOTTLES',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 0.5
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.red,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, 4.0)),
-                        Shadow(
-                            color: Colors.blue,
-                            blurRadius: 2.0,
-                            offset: Offset(2.0, -2.0))
-                      ]),
-                ),
-              ],
-            ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: heighttt.maxHeight / 5),
-            child: ListView.builder(
-              //creates a list based on the incoming parameters
-              shrinkWrap: true,
-              //childAspectRatio has been included to manually adjust the size
-              //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
-
-              itemCount: wineBottle.length,
-              //allows list to be scrollable sideways
-              scrollDirection: Axis.horizontal,
-
-              itemBuilder: (BuildContext ctx, int index) {
-                return Container(
-                  margin: EdgeInsets.all(5),
-                  //creates constraints for card to form
-                  child: SizedBox(
-                    width: 250,
-                    //each card for each item
-                    child: Card(
-                      //card background
-                      color: Colors.black54,
-                      elevation: 10,
-                      shadowColor: Colors.grey,
-                      //rounds border of CARD
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(children: [
-                        //sets aspect ration to 1:1 , aka a square
-                        AspectRatio(
-                          //width: 160,
-                          aspectRatio: 1,
-                          //square image
-                          child: ClipRRect(
-                            //rounds corners of image
-                            borderRadius: BorderRadius.circular(10),
-                            //imports image from menu class
-                            child: Image.asset(
-                                "lib/images/" + wineBottle[index].image),
-                          ),
-                        ),
-                        //the text is right here
-                        Expanded(
-                          //name of beverage
-                          //font, color, size
-                          child: Text(wineBottle[index].name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              )),
-                        ),
-                      ]),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          //////////////////////
-          ///shotxs Heading
-          //////////////////////
-          Center(
-            child: Stack(
-              children: <Widget>[
-                // Stroked text as border.
-                Text(
-                  'SHOTS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 1
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.yellow,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, -2.0))
-                      ]),
-                ),
-                Text(
-                  'SHOTS',
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 0.5
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.red,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, 4.0)),
-                        Shadow(
-                            color: Colors.blue,
-                            blurRadius: 2.0,
-                            offset: Offset(2.0, -2.0))
-                      ]),
-                ),
-              ],
-            ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: heighttt.maxHeight / 5),
-            child: ListView.builder(
-              //creates a list based on the incoming parameters
-              shrinkWrap: true,
-              //childAspectRatio has been included to manually adjust the size
-              //of the cards in the listview, changing them from their default 1x1 square aspect ratio.
-
-              itemCount: shots.length,
-              //allows list to be scrollable sideways
-              scrollDirection: Axis.horizontal,
-
-              itemBuilder: (BuildContext ctx, int index) {
-                return Container(
-                  margin: EdgeInsets.all(5),
-                  //creates constraints for card to form
-                  child: SizedBox(
-                    width: 250,
-                    //each card for each item
-                    child: Card(
-                      //card background
-                      color: Colors.black54,
-                      elevation: 10,
-                      shadowColor: Colors.grey,
-                      //rounds border of CARD
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(children: [
-                        //sets aspect ration to 1:1 , aka a square
-                        AspectRatio(
-                          //width: 160,
-                          aspectRatio: 1,
-                          //square image
-                          child: ClipRRect(
-                            //rounds corners of image
-                            borderRadius: BorderRadius.circular(10),
-                            //imports image from menu class
-                            child:
-                                Image.asset("lib/images/" + shots[index].image),
-                          ),
-                        ),
-                        //the text is right here
-                        Expanded(
-                          //name of beverage
-                          //font, color, size
-                          child: Text(shots[index].name,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              )),
-                        ),
-                      ]),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          //////////////////////
-        ],
-      ),
-    );
-  }
-}
-
+//////////////////////////////////////////////////////////////////
 //ListCategory
 List<PhotoTemplate> event = HelperPhoto.getEvents();
 
@@ -1626,7 +864,7 @@ class EventWidget extends StatelessWidget {
           ),
         ],
       ),
-       height: 500,
+      height: 500,
       // width: constraints.maxWidth * 0.75,
       // color: barBBlack,
       child: Center(
@@ -1685,69 +923,60 @@ class EventWidget extends StatelessWidget {
   }
 }
 
-
-
 class EventWidgetSmall extends StatelessWidget {
-  
-
   const EventWidgetSmall();
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black87,
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      height: 500,
+      //organizes the list of list views besides using column
+      child: GridView.builder(
+          itemCount: event.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 5.0,
+            mainAxisSpacing: 5.0,
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            return RawMaterialButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PicDetails(
+                      imagePath: "eventImage/" + event[index].image,
+                    ),
+                  ),
+                );
+              },
+              child: Container(
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black87,
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(
+                    image: AssetImage(
+                      "lib/eventImage/" + event[index].image,
                     ),
-                  ],
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                height: 500,
-                //organizes the list of list views besides using column
-                child: GridView.builder(
-                    itemCount: event.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 5.0,
-                      mainAxisSpacing: 5.0,
-                    ),
-                    itemBuilder: (BuildContext context, int index) {
-                      return RawMaterialButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PicDetails(
-                                imagePath: "eventImage/" + event[index].image,
-                              ),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "lib/eventImage/" + event[index].image,
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-              );
-
-    
+              ),
+            );
+          }),
+    );
   }
 }
-///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-///
-///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-///**********************************URL FUNCTIONS********************/
-///******************************************************
+
+//******************
 ///* creates buttons for
 //* 0: facebook
 //* 2: Twitter
