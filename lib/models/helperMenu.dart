@@ -73,7 +73,7 @@ class HelperMenu {
       ///////Michelob card
       MenuTemplate(
         spiritType: "Beer",
-        name: "Michelob Gold",
+        name: "Michelob \nGold",
         image: 'michGold.png',
         price: currentPrice,
         happyHourPrice: hhPrice,

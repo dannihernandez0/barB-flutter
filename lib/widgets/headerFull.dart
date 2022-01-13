@@ -17,6 +17,7 @@ import 'package:flutter_application_1/models/MenuTemplate.dart';
 import "package:flutter_application_1/models/photoTemplate.dart";
 import "package:flutter_application_1/models/helperPhoto.dart";
 import 'package:flutter_application_1/screens/picDetails.dart';
+import 'package:flip_card/flip_card.dart';
 
 Color barBBlack = Colors.black87;
 
@@ -78,50 +79,7 @@ class HeaderFull extends StatelessWidget {
               flex: 6,
             ),
             //Text('Header'),
-            Stack(
-              children: <Widget>[
-                // Stroked text as border.
-                Text(
-                  title,
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 60,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 1
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.yellow,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, -2.0))
-                      ]),
-                ),
-                Text(
-                  //from function
-                  title,
-                  style: TextStyle(
-                      fontFamily: "Rajdhani",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 60,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..strokeWidth = 0.5
-                        ..color = Colors.white,
-                      shadows: [
-                        Shadow(
-                            color: Colors.red,
-                            blurRadius: 2.0,
-                            offset: Offset(-4.0, 4.0)),
-                        Shadow(
-                            color: Colors.blue,
-                            blurRadius: 2.0,
-                            offset: Offset(2.0, -2.0))
-                      ]),
-                ),
-              ],
-            ),
+            RBowFont(title, 60),
             Spacer(
               flex: 6,
             ),
@@ -444,6 +402,8 @@ class MenuListBuilder extends StatelessWidget {
           ],
         ),
       ),
+
+      ////actual card
       ConstrainedBox(
         constraints: BoxConstraints(maxHeight: heightttt.maxHeight / 5),
         child: ListView.builder(
@@ -460,71 +420,105 @@ class MenuListBuilder extends StatelessWidget {
             return Container(
               margin: EdgeInsets.all(5),
               //creates constraints for card to form
-              child: SizedBox(
-                width: 250,
-                //each card for each item
-                child: Card(
-                  //card background
-                  color: Colors.black54,
-                  elevation: 10,
-                  shadowColor: Colors.grey,
-                  //rounds border of CARD
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(children: [
-                    //sets aspect ration to 1:1 , aka a square
-                    AspectRatio(
-                      //width: 160,
-                      aspectRatio: 1,
-                      //square image
-                      child: ClipRRect(
-                        //rounds corners of image
-                        borderRadius: BorderRadius.circular(10),
-                        //imports image from menu class
-                        child: Image.asset("lib/images/" + type[index].image),
-                      ),
+              child: FlipCard(
+                front: SizedBox(
+                  //width: 250,
+                  //each card for each item
+                  child: Card(
+                    //card background
+                    color: Colors.black54,
+                    elevation: 10,
+                    shadowColor: Colors.grey,
+                    //rounds border of CARD
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    //the text is right here
-                    Expanded(
-                      //name of beverage
-                      //font, color, size
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Spacer(),
-                            Text(type[index].name,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                )),
-                            Spacer(),
-                            ////////////////////////////
-                            Text("Current Price: " + type[index].price,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                )),
-                            Text("HH: " + type[index].happyHourPrice,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                )),
-                            /*Text(currentTime,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                )),*/
-                            Spacer(),
-                          ],
+                    child: Stack(children: [
+                      //sets aspect ration to 1:1 , aka a square
+                      AspectRatio(
+                        //width: 160,
+                        aspectRatio: 1,
+                        //square image
+                        child: ClipRRect(
+                          //rounds corners of image
+                          borderRadius: BorderRadius.circular(10),
+                          //imports image from menu class
+                          child: Image.asset("lib/images/" + type[index].image),
                         ),
                       ),
-                    )
-                  ]),
+                      //the text is right here
+                      Positioned.fill(
+                        //name of beverage
+                        //font, color, size
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Column(
+                            children: [
+                              Spacer(),
+                              RBowFont(type[index].name, 20),
+                              Spacer(),
+                            ],
+                          ),
+                        ),
+                      )
+                    ]),
+                  ),
+                ),
+                back:
+                    /*Column(
+                    children: [
+                      Spacer(),
+                      Text("Current Price: " + type[index].price,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          )),
+                      Spacer(),
+                      Text("HH: " + type[index].happyHourPrice,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          )),
+                      Spacer(),
+                    ],
+                  )*/
+
+                    SizedBox(
+                  //width: 250,
+                  //each card for each item
+                  child: Card(
+                    //card background
+                    color: Colors.black54,
+                    elevation: 10,
+                    shadowColor: Colors.grey,
+                    //rounds border of CARD
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Stack(children: [
+                      Column(
+                        children: [
+                          Spacer(),
+                          Text("Current Price: " + type[index].price,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              )),
+                          Spacer(),
+                          Text("HH: " + type[index].happyHourPrice,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              )),
+                          Spacer(),
+                        ],
+                      )
+                    ]),
+                  ),
                 ),
               ),
             );
@@ -535,12 +529,6 @@ class MenuListBuilder extends StatelessWidget {
   }
 }
 
-///WORKS
-///
-//////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-///FULL SCREEN WIDGETS
-///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-///HEADER - WORKING
 class HeaderSmall extends StatelessWidget {
   const HeaderSmall();
 
@@ -617,56 +605,14 @@ class FooterSmall extends StatelessWidget {
     return Container(
       height: heightttt.maxHeight - 600,
       //width: widthhh.maxWidth * 0.75,
-      color: Colors.black87,
+      color: barBBlack,
       child: Column(
         children: [
           Spacer(),
           Row(
             children: <Widget>[
               Spacer(),
-              Stack(
-                children: <Widget>[
-                  // Stroked text as border.
-                  Text(
-                    'Follow Us On:',
-                    style: TextStyle(
-                        fontFamily: "Rajdhani",
-                        //fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 1
-                          ..color = Colors.white,
-                        shadows: [
-                          Shadow(
-                              color: Colors.yellow,
-                              blurRadius: 2.0,
-                              offset: Offset(-4.0, -2.0))
-                        ]),
-                  ),
-                  Text(
-                    'Follow Us On:',
-                    style: TextStyle(
-                        fontFamily: "Rajdhani",
-                        //fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 0.5
-                          ..color = Colors.white,
-                        shadows: [
-                          Shadow(
-                              color: Colors.red,
-                              blurRadius: 2.0,
-                              offset: Offset(-4.0, 4.0)),
-                          Shadow(
-                              color: Colors.blue,
-                              blurRadius: 2.0,
-                              offset: Offset(2.0, -2.0))
-                        ]),
-                  ),
-                ],
-              ),
+              RBowFont("Follow Us On:", 30),
               Spacer(),
               Container(
                 child: IconButton(
@@ -1028,5 +974,61 @@ _launchURL5() async {
     await launch(url);
   } else {
     throw 'Could not launch $url';
+  }
+}
+
+class RBowFont extends StatelessWidget {
+  //the text to be inserted into the function
+  final String textString;
+  final double textSize;
+  RBowFont(this.textString, this.textSize);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        // Stroked text as border.
+        Text(
+          textString,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontFamily: "Rajdhani",
+              //fontWeight: FontWeight.bold,
+              fontSize: textSize,
+              foreground: Paint()
+                ..style = PaintingStyle.stroke
+                ..strokeWidth = 1
+                ..color = Colors.white,
+              shadows: [
+                Shadow(
+                    color: Colors.yellow,
+                    blurRadius: 2.0,
+                    offset: Offset(-4.0, -2.0))
+              ]),
+        ),
+        Text(
+          textString,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontFamily: "Rajdhani",
+              //fontWeight: FontWeight.bold,
+              fontSize: textSize,
+              foreground: Paint()
+                ..style = PaintingStyle.stroke
+                ..strokeWidth = 0.5
+                ..color = Colors.white,
+              shadows: [
+                Shadow(
+                    color: Colors.red,
+                    blurRadius: 2.0,
+                    offset: Offset(-4.0, 4.0)),
+                Shadow(
+                    color: Colors.blue,
+                    blurRadius: 2.0,
+                    offset: Offset(2.0, -2.0))
+              ]),
+        ),
+      ],
+    );
   }
 }
