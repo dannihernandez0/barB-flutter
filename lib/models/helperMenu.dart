@@ -60,21 +60,58 @@ class HelperMenu {
 
     return [
       ///////Dos XX card
-      MenuTemplate(
-        spiritType: "Beer",
-        name: "Dos XX",
-        image: 'dosxx.jpg',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
-        subMenuCards: [],
-      ),
       /////// card
       ///
       ///////Michelob card
       MenuTemplate(
         spiritType: "Beer",
-        name: "Michelob \nGold",
+        name: "BUDLIGHT",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Beer",
+        name: "BUDWEISER",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Beer",
+        name: "MILLER",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),MenuTemplate(
+        spiritType: "Beer",
+        name: "MICHELOB",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Beer",
+        name: "MICHELOB GOLD",
         image: 'michGold.png',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Beer",
+        name: "COORS",
+        image: '',
+        description: "",
         price: currentPrice,
         happyHourPrice: hhPrice,
         subMenuCards: [],
@@ -132,18 +169,75 @@ class HelperMenu {
       ///////Indio card
       MenuTemplate(
         spiritType: "Beer",
-        name: "Indio",
-        image: 'djMike.jpg',
+        name: "DOS XX",
+        image: 'dosxx.jpg',
+        description: "",
         price: currentPrice,
         happyHourPrice: hhPrice,
         subMenuCards: [],
       ),
-      /////// card
-      //////////Stella card
       MenuTemplate(
         spiritType: "Beer",
-        name: "Stella Airtuough",
-        image: 'events1.jpg',
+        name: "INDIO",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Beer",
+        name: "MODELO",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),MenuTemplate(
+        spiritType: "Beer",
+        name: "MODELO NEGRO",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),MenuTemplate(
+        spiritType: "Beer",
+        name: "CORONA",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),MenuTemplate(
+        spiritType: "Beer",
+        name: "CORONA PREMIER",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),MenuTemplate(
+        spiritType: "Beer",
+        name: "ANGRY ORCHARD",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),MenuTemplate(
+        spiritType: "Beer",
+        name: "BOHEMIA",
+        image: '',
+        description: "",
+        price: currentPrice,
+        happyHourPrice: hhPrice,
+        subMenuCards: [],
+      ),MenuTemplate(
+        spiritType: "Beer",
+        name: "WHITECLAW",
+        image: '',
+        description: "",
         price: currentPrice,
         happyHourPrice: hhPrice,
         subMenuCards: [],
@@ -159,23 +253,54 @@ class HelperMenu {
       ///////Strawberry Pride card
       MenuTemplate(
         spiritType: "Margarita",
-        name: "Strawberry Pride",
-        image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        name: "PINK COOCOO ",
+        image: '',
+        description:
+            "Patron Silver, Triple Sec, Sweet and Sour Mix and Grapefruit Juice, Rimmed with Salt",
+        price: '9',
+        happyHourPrice: '8',
         subMenuCards: [],
       ),
-      /////// card
-      //////////Man go card
       MenuTemplate(
         spiritType: "Margarita",
-        name: "Man Go",
-        image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        name: "BAR-B'S SPECIAL M",
+        image: '',
+        description:
+            "1800 Reposado, Cointreau, Fresh Lime, Fresh Orange Juice and Olive Brine, and Rimmed with Salt",
+        price: '9',
+        happyHourPrice: '8',
         subMenuCards: [],
       ),
-      /////// card
+      MenuTemplate(
+        spiritType: "Margarita",
+        name: "SPRINKLE MY CHEEKS",
+        image: '',
+        description:
+            "Jose Cuervo, Grand Marnier , Sweet and Sour Mix, Simple Syrup, Rimmed with BAR-B Sprinkles",
+        price: '8',
+        happyHourPrice: '7',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Margarita",
+        name: "MAN GO",
+        image: '',
+        description:
+            "Don Julic Bianco, Cointreau, Fresh Lime Juice, Agave syrup, Mango Mix and rimmed with tajin",
+        price: '9',
+        happyHourPrice: '8',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Margarita",
+        name: "STRAWBERRY PRIDE",
+        image: 'michGold.png',
+        description:
+            "Mezcal, Grand Marnier, Honey, Strawberry Mix, Rimmed with Salt",
+        price: '9',
+        happyHourPrice: '8',
+        subMenuCards: [],
+      ),
     ];
   }
 
@@ -186,23 +311,61 @@ class HelperMenu {
       ///////Cucumber Me card
       MenuTemplate(
         spiritType: "Martini",
-        name: "Cucumber Me",
-        image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        name: "MINTY CHOCOCHATA ",
+        image: '',
+        description:
+            "Chocolate Vodka, Rum Chata Creme De Menthe and Chocolate Sauce",
+        price: '9',
+        happyHourPrice: '8',
         subMenuCards: [],
       ),
-      /////// card
-      /// ///////Sleeping Beauty card
       MenuTemplate(
         spiritType: "Martini",
-        name: "Sleeping Beauty",
-        image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        name: "CANDIED ORANGE ",
+        image: '',
+        description:
+            "Vanilla Vodka, Frangelico,Grand Marnier and Candy Orange Slice",
+        price: '10',
+        happyHourPrice: '9',
         subMenuCards: [],
       ),
-      /////// card
+      MenuTemplate(
+        spiritType: "Martini",
+        name: "SLEEPING BEAUTY",
+        image: '',
+        description: "Hypnotic, Beefeaters Pink",
+        price: '10',
+        happyHourPrice: '9',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Martini",
+        name: "FRENCH KISS",
+        image: '',
+        description: "Rasberry Vodka, Chambord, Pineapple Juice",
+        price: '8',
+        happyHourPrice: '7',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Martini",
+        name: "CUCUMBER ME ",
+        image: '',
+        description:
+            "Tito's Vodka, Fresh Lime Juice, Simple Syrup, Mint and Cucumbers",
+        price: '9',
+        happyHourPrice: '8',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Martini",
+        name: "CLASSICALLY DIRTY",
+        image: '',
+        description: "Tanqueray Gin, Dry Vermouth, and Raspberry Liqueur",
+        price: '9',
+        happyHourPrice: '8',
+        subMenuCards: [],
+      ),
     ];
   }
 
@@ -213,20 +376,64 @@ class HelperMenu {
       ///////Merrill's Fashion card
       MenuTemplate(
         spiritType: "Cocktails",
-        name: "Merrill's Fashion",
-        image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        name: "SEXY BEACHES",
+        image: '',
+        description:
+            "Tito’s Vodka, Peach Schnapps, Cranberry Juice and Fresh Orange Juice",
+        price: '9',
+        happyHourPrice: '8',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Cocktails",
+        name: "TURBULOUS KOLA",
+        image: '',
+        description:
+            "Bacardi Rum, Cream of Coconut, Pineapple Juice, and Calypso 151",
+        price: '10',
+        happyHourPrice: '9',
         subMenuCards: [],
       ),
       /////// card
       //////////The Fluffer card
       MenuTemplate(
         spiritType: "Cocktails",
-        name: "The Fluffer",
-        image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        name: "THE FLUFFER",
+        image: '',
+        description:
+            "Coconut Rum, Peach Schnapps, Rasberry Liqueur, Pineapple Juice and Club Soda",
+        price: '7',
+        happyHourPrice: '6',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Cocktails",
+        name: "TROPICAL ROOFIE",
+        image: '',
+        description:
+            "Calypso 151, Watermelon Schnapps, Fresh Orange Juice and Grenadine",
+        price: '8',
+        happyHourPrice: '7',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Cocktails",
+        name: "RIDE OR DIE",
+        image: '',
+        description:
+            "Patron Silver, Grand Marnier, Fresh Orange Juice, Disaronno Amaretto liqueur and sweet and sour mix",
+        price: '10',
+        happyHourPrice: '9',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Cocktails",
+        name: "MERRILLS FASHION",
+        image: '',
+        description:
+            "Makers Mark, Fernet-Branca and Angostura Bitters with Fresh Orange Twist",
+        price: '8',
+        happyHourPrice: '7',
         subMenuCards: [],
       ),
       /////// card
@@ -240,10 +447,11 @@ class HelperMenu {
       ///////Michelob card
       MenuTemplate(
         spiritType: "Wine",
-        name: "Moscato",
+        name: "PINO GRIGIO",
         image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        description: '',
+        price: '7',
+        happyHourPrice: '6',
         subMenuCards: [],
       ),
       /////// card
@@ -251,10 +459,29 @@ class HelperMenu {
       //////////Michelob card
       MenuTemplate(
         spiritType: "Wine",
-        name: "Pino Grigio",
+        name: "MERLOT",
         image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        description: '',
+        price: '7',
+        happyHourPrice: '6',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Wine",
+        name: "CHARDONNAY",
+        image: 'michGold.png',
+        description: '',
+        price: '7',
+        happyHourPrice: '6',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Wine",
+        name: "MOSCATO",
+        image: 'michGold.png',
+        description: '',
+        price: '7',
+        happyHourPrice: '6',
         subMenuCards: [],
       ),
       /////// card
@@ -268,10 +495,11 @@ class HelperMenu {
       ///////Michelob card
       MenuTemplate(
         spiritType: "Wine",
-        name: "Moscato",
+        name: "PINO GRIGIO",
         image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        description: '',
+        price: '23',
+        happyHourPrice: 'IDK',
         subMenuCards: [],
       ),
       /////// card
@@ -279,12 +507,24 @@ class HelperMenu {
       //////////Michelob card
       MenuTemplate(
         spiritType: "Wine",
-        name: "Pino Grigio",
+        name: "MERLOT",
         image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        description: '',
+        price: '23',
+        happyHourPrice: 'idk',
         subMenuCards: [],
       ),
+      MenuTemplate(
+        spiritType: "Wine",
+        name: "CHARDONNAY",
+        image: 'michGold.png',
+        description: '',
+        price: '23',
+        happyHourPrice: 'idk',
+        subMenuCards: [],
+      ),
+      
+      /////// card
       /////// card
     ];
   }
@@ -296,20 +536,60 @@ class HelperMenu {
       ///////Michelob card
       MenuTemplate(
         spiritType: "Shot",
-        name: "Pink Flamingo",
+        name: "Mike's Lollipop",
         image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        description:
+            "Vodka, Apple and Watermelon with a dash of Tabasco and Chile",
+        price: '7',
+        happyHourPrice: '6',
         subMenuCards: [],
       ),
       /////// card
       //////////Michelob card
       MenuTemplate(
         spiritType: "Shot",
-        name: "Bar-B Blow",
+        name: "LEO’S M&M",
         image: 'michGold.png',
-        price: currentPrice,
-        happyHourPrice: hhPrice,
+        description: "Peanut Butter Whiskey, Creme de Cocoa & Whipped Cream",
+        price: '8',
+        happyHourPrice: '7',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Shot",
+        name: "BOTTOM'S UP",
+        image: 'michGold.png',
+        description: "Crown Apple Whiskey, Energy Drink & Sprite",
+        price: '8',
+        happyHourPrice: '7',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Shot",
+        name: "BEEF CAKE",
+        image: 'michGold.png',
+        description: "Bacardi Rum, Triple Sec, Cinnamon and Apple Schnapps",
+        price: '7',
+        happyHourPrice: '6',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Shot",
+        name: "FLAMES OF GLORY FOR TWO",
+        image: 'michGold.png',
+        description: "Rum, Lemonade, Grenadine, and Calypso 151",
+        price: '13',
+        happyHourPrice: '12',
+        subMenuCards: [],
+      ),
+      MenuTemplate(
+        spiritType: "Shot",
+        name: "BAR-B BLOW",
+        image: 'michGold.png',
+        description:
+            "Baileys, Butterscotch Schnapps, Topped with Whipped Cream and Sprinkles",
+        price: '7',
+        happyHourPrice: '6',
         subMenuCards: [],
       ),
       /////// card

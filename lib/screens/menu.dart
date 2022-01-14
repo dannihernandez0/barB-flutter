@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/headerFull.dart';
 
-
 ///!!!MENU COMPLETE - full and small
 // ignore: must_be_immutable
 class Menu extends StatelessWidget {
@@ -20,59 +19,77 @@ class Menu extends StatelessWidget {
                 HeaderFull(widthhh: constraints, title: 'MENU'),
 
                 //////BODY PART
-                Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black87,
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3),
+                Row(
+                  children: [
+                    Container(
+                      decoration: shadowEdge,
+                      //color: barBBlack,
+                      height: 500,
+                      width: constraints.maxWidth * 0.20,
+                      child: Text("hello"),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black87,
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  height: 500,
-                  width: constraints.maxWidth * 0.75,
-                  //organizes the list of list views besides using column
-                  child: ListView(
-                    children: [
-                      ///LIST OF MENU ITEMS
-                      //domestics
-                      MenuListBuilder(
-                          type: domestics,
-                          heightttt: constraints,
-                          title: "DOMESTICS"),
-                      //imports
-                      MenuListBuilder(
-                          type: imports,
-                          heightttt: constraints,
-                          title: "IMPORTS"),
-                      //shots
-                      MenuListBuilder(
-                          type: shots, heightttt: constraints, title: "SHOTS"),
-                      //margartitas
-                      MenuListBuilder(
-                          type: margaritas,
-                          heightttt: constraints,
-                          title: "MARGARITAS"),
-                      ///////////////////
-                      //martinis
-                      MenuListBuilder(
-                          type: martinis,
-                          heightttt: constraints,
-                          title: "MARTINIS"),
-                      //Wine Glass
-                      MenuListBuilder(
-                          type: wineGlass,
-                          heightttt: constraints,
-                          title: "WINE GLASSES"),
-                      //Wine Bottles
-                      MenuListBuilder(
-                          type: wineBottle,
-                          heightttt: constraints,
-                          title: "WINE BOTTLES"),
-                    ],
-                  ),
+                      height: 500,
+                      width: constraints.maxWidth * 0.55,
+                      //organizes the list of list views besides using column
+                      child: ListView(
+                        children: [
+                          ///LIST OF MENU ITEMS
+                          //domestics
+                          MenuListBuilder(
+                              type: domestics,
+                              heightttt: constraints,
+                              title: "DOMESTICS"),
+                          //imports
+                          MenuListBuilder(
+                              type: imports,
+                              heightttt: constraints,
+                              title: "IMPORTS"),
+                          //cocktails
+                          MenuListBuilder(
+                              type: cocktails,
+                              heightttt: constraints,
+                              title: "COCKTAILS"),
+                          //shots
+                          MenuListBuilder(
+                              type: shots,
+                              heightttt: constraints,
+                              title: "SHOTS"),
+                          //margartitas
+                          MenuListBuilder(
+                              type: margaritas,
+                              heightttt: constraints,
+                              title: "MARGARITAS"),
+                          ///////////////////
+                          //martinis
+                          MenuListBuilder(
+                              type: martinis,
+                              heightttt: constraints,
+                              title: "MARTINIS"),
+                          //Wine Glass
+                          MenuListBuilder(
+                              type: wineGlass,
+                              heightttt: constraints,
+                              title: "WINE GLASSES"),
+                          //Wine Bottles
+                          MenuListBuilder(
+                              type: wineBottle,
+                              heightttt: constraints,
+                              title: "WINE BOTTLES"),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
 //FOOTER
                 FooterFull(widthhh: constraints)
@@ -119,6 +136,11 @@ class Menu extends StatelessWidget {
                     //shots
                     MenuListBuilder(
                         type: shots, heightttt: constraints, title: "SHOTS"),
+                    //cocktails
+                    MenuListBuilder(
+                        type: cocktails,
+                        heightttt: constraints,
+                        title: "COCKTAILS"),
                     //margartitas
                     MenuListBuilder(
                         type: margaritas,

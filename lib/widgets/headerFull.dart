@@ -24,6 +24,18 @@ Color barBBlack = Colors.black87;
 var dateGetter = DateTime.now();
 var currentTime = DateFormat.E().format(dateGetter);
 
+//the shadow that goes around the border
+BoxDecoration shadowEdge = BoxDecoration(
+  boxShadow: [
+    BoxShadow(
+      color: Colors.black87,
+      spreadRadius: 5,
+      blurRadius: 7,
+      offset: Offset(0, 3),
+    ),
+  ],
+);
+
 //end card access pages
 //
 //
@@ -48,16 +60,7 @@ class HeaderFull extends StatelessWidget {
     return //TOP SECTION
         Container(
       width: widthhh.maxWidth * 0.75,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black87,
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
+      decoration: shadowEdge,
       height: 100,
       //color: Colors.black87,
       child: Center(
@@ -316,19 +319,8 @@ class MenuWidget extends StatelessWidget {
                                 children: [
                                   Container(
                                     child: Center(
-                                      child: Text(
-                                        cardCustom[index].name,
-                                        textAlign: TextAlign.center,
-                                        //edits the style of the font imprted from class
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
-                                          foreground: Paint()
-                                            ..style = PaintingStyle.fill
-                                            ..strokeWidth = 3
-                                            ..color = Colors.white,
-                                        ),
-                                      ),
+                                      child:
+                                          RBowFont(cardCustom[index].name, 30),
                                     ),
                                   ),
                                 ],
@@ -358,49 +350,7 @@ class MenuListBuilder extends StatelessWidget {
     ///Import Heading
     return Column(children: [
       Center(
-        child: Stack(
-          children: <Widget>[
-            // Stroked text as border.
-            Text(
-              title,
-              style: TextStyle(
-                  fontFamily: "Rajdhani",
-                  //fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  foreground: Paint()
-                    ..style = PaintingStyle.stroke
-                    ..strokeWidth = 1
-                    ..color = Colors.white,
-                  shadows: [
-                    Shadow(
-                        color: Colors.yellow,
-                        blurRadius: 2.0,
-                        offset: Offset(-4.0, -2.0))
-                  ]),
-            ),
-            Text(
-              title,
-              style: TextStyle(
-                  fontFamily: "Rajdhani",
-                  //fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  foreground: Paint()
-                    ..style = PaintingStyle.stroke
-                    ..strokeWidth = 0.5
-                    ..color = Colors.white,
-                  shadows: [
-                    Shadow(
-                        color: Colors.red,
-                        blurRadius: 2.0,
-                        offset: Offset(-4.0, 4.0)),
-                    Shadow(
-                        color: Colors.blue,
-                        blurRadius: 2.0,
-                        offset: Offset(2.0, -2.0))
-                  ]),
-            ),
-          ],
-        ),
+        child: RBowFont(title, 30),
       ),
 
       ////actual card
@@ -418,110 +368,14 @@ class MenuListBuilder extends StatelessWidget {
 
           itemBuilder: (BuildContext ctx, int index) {
             return Container(
-              margin: EdgeInsets.all(5),
-              //creates constraints for card to form
-              child: FlipCard(
-                front: SizedBox(
-                  //width: 250,
-                  //each card for each item
-                  child: Card(
-                    //card background
-                    color: Colors.black54,
-                    elevation: 10,
-                    shadowColor: Colors.grey,
-                    //rounds border of CARD
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Stack(children: [
-                      //sets aspect ration to 1:1 , aka a square
-                      AspectRatio(
-                        //width: 160,
-                        aspectRatio: 1,
-                        //square image
-                        child: ClipRRect(
-                          //rounds corners of image
-                          borderRadius: BorderRadius.circular(10),
-                          //imports image from menu class
-                          child: Image.asset("lib/images/" + type[index].image),
-                        ),
-                      ),
-                      //the text is right here
-                      Positioned.fill(
-                        //name of beverage
-                        //font, color, size
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Column(
-                            children: [
-                              Spacer(),
-                              RBowFont(type[index].name, 20),
-                              Spacer(),
-                            ],
-                          ),
-                        ),
-                      )
-                    ]),
-                  ),
-                ),
-                back:
-                    /*Column(
-                    children: [
-                      Spacer(),
-                      Text("Current Price: " + type[index].price,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          )),
-                      Spacer(),
-                      Text("HH: " + type[index].happyHourPrice,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          )),
-                      Spacer(),
-                    ],
-                  )*/
-
-                    SizedBox(
-                  //width: 250,
-                  //each card for each item
-                  child: Card(
-                    //card background
-                    color: Colors.black54,
-                    elevation: 10,
-                    shadowColor: Colors.grey,
-                    //rounds border of CARD
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Stack(children: [
-                      Column(
-                        children: [
-                          Spacer(),
-                          Text("Current Price: " + type[index].price,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                              )),
-                          Spacer(),
-                          Text("HH: " + type[index].happyHourPrice,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                              )),
-                          Spacer(),
-                        ],
-                      )
-                    ]),
-                  ),
-                ),
-              ),
-            );
+                margin: EdgeInsets.all(5),
+                //creates constraints for card to form
+                child: CardAnimate(
+                  type[index].name,
+                  type[index].image,
+                  type[index].price,
+                  type[index].happyHourPrice,
+                ));
           },
         ),
       ),
@@ -536,16 +390,7 @@ class HeaderSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //width: constraints.maxWidth * 0.75,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black87,
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
+      decoration: shadowEdge,
       height: 100,
       //color: Colors.black87,
       child: Center(
@@ -666,16 +511,7 @@ class MenuCardSmall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black87,
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
+        decoration: shadowEdge,
         height: 500,
         // color: Colors.amber,
         // constraints: BoxConstraints.expand(),
@@ -746,20 +582,7 @@ class MenuCardSmall extends StatelessWidget {
                         children: [
                           Container(
                             child: Center(
-                              child: Text(
-                                cardCustom[index].name,
-                                textAlign: TextAlign.center,
-                                //edits the style of the font imprted from class
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  foreground: Paint()
-                                    ..style = PaintingStyle.fill
-                                    ..strokeWidth = 3
-                                    ..color = Colors.white,
-                                ),
-                              ),
-                            ),
+                                child: RBowFont(cardCustom[index].name, 30)),
                           ),
                         ],
                       ),
@@ -800,16 +623,7 @@ class EventWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: widthhh.maxWidth * 0.75,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black87,
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
+      decoration: shadowEdge,
       height: 500,
       // width: constraints.maxWidth * 0.75,
       // color: barBBlack,
@@ -819,16 +633,7 @@ class EventWidget extends StatelessWidget {
         //
         child: //////BODY PART
             Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black87,
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3),
-              ),
-            ],
-          ),
+          decoration: shadowEdge,
           height: 500,
           //organizes the list of list views besides using column
           child: GridView.builder(
@@ -874,16 +679,7 @@ class EventWidgetSmall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black87,
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
+      decoration: shadowEdge,
       height: 500,
       //organizes the list of list views besides using column
       child: GridView.builder(
@@ -1029,6 +825,104 @@ class RBowFont extends StatelessWidget {
               ]),
         ),
       ],
+    );
+  }
+}
+
+class CardAnimate extends StatelessWidget {
+  //the text to be inserted into the function
+  final String image;
+  final String name;
+  final String price;
+  final String happyhour;
+  CardAnimate(this.name, this.image, this.price, this.happyhour);
+
+  @override
+  Widget build(BuildContext context) {
+    return FlipCard(
+      front: SizedBox(
+        //width: 250,
+        //each card for each item
+        child: Card(
+          //card background
+          color: Colors.black54,
+          elevation: 10,
+          shadowColor: Colors.grey,
+          //rounds border of CARD
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Stack(children: [
+            //sets aspect ration to 1:1 , aka a square
+            AspectRatio(
+              //width: 160,
+              aspectRatio: 1,
+              //square image
+              child: ClipRRect(
+                //rounds corners of image
+                borderRadius: BorderRadius.circular(10),
+                //imports image from menu class
+                child: Image.asset("lib/images/" + image),
+              ),
+            ),
+            //the text is right here
+            Positioned.fill(
+              //name of beverage
+              //font, color, size
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Spacer(),
+                    RBowFont(name, 20),
+                    Spacer(),
+                  ],
+                ),
+              ),
+            )
+          ]),
+        ),
+      ),
+      back: SizedBox(
+        //width: 250,
+        //each card for each item
+        child: Card(
+          //card background
+          color: barBBlack,
+          elevation: 10,
+          shadowColor: Colors.grey,
+          //rounds border of CARD
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Container(
+            width: 120,
+            child: Stack(children: [
+              Column(
+                children: [
+                  Spacer(),
+                  Center(
+                    child: Text("Price: \$" + price,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        )),
+                  ),
+                  Spacer(),
+                  Text("HH: \$" + happyhour,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      )),
+                  Spacer(),
+                ],
+              )
+            ]),
+          ),
+        ),
+      ),
     );
   }
 }
