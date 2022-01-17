@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+//import 'package:flutter_application_1/screens/menu.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,7 +18,7 @@ import 'package:flutter_application_1/models/MenuTemplate.dart';
 import "package:flutter_application_1/models/photoTemplate.dart";
 import "package:flutter_application_1/models/helperPhoto.dart";
 import 'package:flutter_application_1/screens/picDetails.dart';
-import 'package:flip_card/flip_card.dart';
+//import 'package:flip_card/flip_card.dart';
 
 Color barBBlack = Colors.black87;
 
@@ -829,7 +830,7 @@ class RBowFont extends StatelessWidget {
   }
 }
 
-class CardAnimate extends StatelessWidget {
+class CardAnimate extends StatefulWidget {
   //the text to be inserted into the function
   final String image;
   final String name;
@@ -838,91 +839,203 @@ class CardAnimate extends StatelessWidget {
   CardAnimate(this.name, this.image, this.price, this.happyhour);
 
   @override
+  _CardAnimateState createState() => _CardAnimateState();
+}
+
+class _CardAnimateState extends State<CardAnimate> {
+  @override
   Widget build(BuildContext context) {
-    return FlipCard(
-      front: SizedBox(
-        //width: 250,
-        //each card for each item
-        child: Card(
-          //card background
-          color: Colors.black54,
-          elevation: 10,
-          shadowColor: Colors.grey,
-          //rounds border of CARD
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Stack(children: [
-            //sets aspect ration to 1:1 , aka a square
-            AspectRatio(
-              //width: 160,
-              aspectRatio: 1,
-              //square image
-              child: ClipRRect(
-                //rounds corners of image
-                borderRadius: BorderRadius.circular(10),
-                //imports image from menu class
-                child: Image.asset("lib/images/" + image),
-              ),
+    return Hero(
+        tag: "tag",
+        child: SizedBox(
+          //width: 250,
+          //each card for each item
+          child: Card(
+            //card background
+            color: Colors.black54,
+            elevation: 10,
+            shadowColor: Colors.grey,
+            //rounds border of CARD
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
             ),
-            //the text is right here
-            Positioned.fill(
-              //name of beverage
-              //font, color, size
-              child: Align(
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    Spacer(),
-                    RBowFont(name, 20),
-                    Spacer(),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MenuDisplay(
+                              dname: widget.name,
+                              dimage: widget.image,
+                              dprice: widget.price,
+                              dhhprice: widget.happyhour,
+                            )));
+              },
+              child: Stack(children: [
+                //sets aspect ration to 1:1 , aka a square
+
+                AspectRatio(
+                  //width: 160,
+                  aspectRatio: 1,
+                  //square image
+                  child: ClipRRect(
+                    //rounds corners of image
+                    borderRadius: BorderRadius.circular(10),
+                    //imports image from menu class
+                    child: Image.asset("lib/images/" + widget.image),
+                  ),
+                ),
+                //the text is right here
+                Positioned.fill(
+                  //name of beverage
+                  //font, color, size
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        Spacer(),
+                        RBowFont(widget.name, 20),
+                        Spacer(),
+                      ],
+                    ),
+                  ),
+                ),
+              ]),
+            ),
+          ),
+        ));
+  }
+}
+
+// ignore: must_be_immutable
+class MenuDisplay extends StatelessWidget {
+  String dname;
+  String dimage;
+  String dprice;
+  String dhhprice;
+  var backIcon = Icons.arrow_back;
+  MenuDisplay({this.dname, this.dimage, this.dprice, this.dhhprice});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          // Large screens (tablet on landscape mode, desktop, TV)
+/******************************************************************************/
+          if (constraints.maxWidth > 600) {
+            return Row(children: [
+              //left side column
+              Column(children: [
+                //HEADER SECTION
+                HeaderFull(widthhh: constraints, title: "Menu"),
+                //////BODY PART
+                Container(
+                    decoration: shadowEdge,
+                    child: Container(
+                        width: constraints.maxWidth * .75,
+                        height: 500,
+                        decoration: shadowEdge,
+                        child: Stack(
+                          children: [
+                            
+                        
+                            Card(
+                              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),),
+                              elevation: 10,
+                              child: Container(
+                                alignment: Alignment(0.0, 1.0),
+                                height: 500,
+                                width: constraints.maxWidth * .75,
+                                color: barBBlack,
+                                
+                                child: Column(
+                                  //crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(child: Image.asset("lib/images/" + dimage, ),),
+                                    RBowFont(
+                                      dname,
+                                      40,
+                                    ),
+                                    RBowFont("Price: " + dprice, 20),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                                icon: Icon(backIcon),
+                                iconSize: 30,
+                                color: Colors.white,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
+                          ],
+                        ))),
+//FOOTER
+                FooterFull(widthhh: constraints)
+              ]),
+              //right size column
+
+              MenuWidget(widthhh: constraints, heightttt: constraints)
+            ]);
+          }
+/******************************************************************************** */
+          // Samll screens
+          return Column(
+            children: [
+              HeaderSmall(),
+              //////BODY PART
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black87,
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    ),
                   ],
                 ),
+                height: 500,
+                //organizes the list of list views besides using column
               ),
-            )
-          ]),
-        ),
-      ),
-      back: SizedBox(
-        //width: 250,
-        //each card for each item
-        child: Card(
-          //card background
-          color: barBBlack,
-          elevation: 10,
-          shadowColor: Colors.grey,
-          //rounds border of CARD
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Container(
-            width: 120,
-            child: Stack(children: [
-              Column(
-                children: [
-                  Spacer(),
-                  Center(
-                    child: Text("Price: \$" + price,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        )),
-                  ),
-                  Spacer(),
-                  Text("HH: \$" + happyhour,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      )),
-                  Spacer(),
-                ],
+/////////////////////////////////////////////////////////////////////////////////////
+              //footer
+              FooterSmall(
+                heightttt: constraints,
               )
-            ]),
-          ),
-        ),
+            ],
+          );
+        },
       ),
     );
   }
 }
+
+/*
+    
+    
+    Column(children: [
+      HeaderFull(widthhh: 200, title: 'MENU'),
+      Container(
+          child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("back"),
+          ),
+          Image.asset("lib/images/" + dimage),
+          Text(dname),
+          Row(
+            children: [
+              Text("PRICE: " + dprice),
+              Text("Happy hour: " + dhhprice)
+            ],
+          )
+        ],
+      ))
+    ]);
+*/

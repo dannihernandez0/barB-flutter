@@ -21,13 +21,7 @@ class Menu extends StatelessWidget {
                 //////BODY PART
                 Row(
                   children: [
-                    Container(
-                      decoration: shadowEdge,
-                      //color: barBBlack,
-                      height: 500,
-                      width: constraints.maxWidth * 0.20,
-                      child: Text("hello"),
-                    ),
+                    
                     Container(
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -40,7 +34,7 @@ class Menu extends StatelessWidget {
                         ],
                       ),
                       height: 500,
-                      width: constraints.maxWidth * 0.55,
+                      width: constraints.maxWidth * 0.75,
                       //organizes the list of list views besides using column
                       child: ListView(
                         children: [
@@ -177,3 +171,4 @@ class Menu extends StatelessWidget {
     );
   }
 }
+ 
