@@ -376,6 +376,7 @@ class MenuListBuilder extends StatelessWidget {
                   type[index].image,
                   type[index].price,
                   type[index].happyHourPrice,
+                  type[index].description,
                 ));
           },
         ),
@@ -836,7 +837,9 @@ class CardAnimate extends StatefulWidget {
   final String name;
   final String price;
   final String happyhour;
-  CardAnimate(this.name, this.image, this.price, this.happyhour);
+  final String description;
+  CardAnimate(
+      this.name, this.image, this.price, this.happyhour, this.description);
 
   @override
   _CardAnimateState createState() => _CardAnimateState();
@@ -869,6 +872,7 @@ class _CardAnimateState extends State<CardAnimate> {
                               dimage: widget.image,
                               dprice: widget.price,
                               dhhprice: widget.happyhour,
+                              ddescription: widget.description,
                             )));
               },
               child: Stack(children: [
@@ -913,9 +917,11 @@ class MenuDisplay extends StatelessWidget {
   String dimage;
   String dprice;
   String dhhprice;
+  String ddescription;
   var backIcon = Icons.arrow_back;
-  MenuDisplay({this.dname, this.dimage, this.dprice, this.dhhprice});
-
+  MenuDisplay(
+      {this.dname, this.dimage, this.dprice, this.dhhprice, this.ddescription});
+  double cardDimen = 360;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -923,6 +929,7 @@ class MenuDisplay extends StatelessWidget {
         builder: (context, constraints) {
           // Large screens (tablet on landscape mode, desktop, TV)
 /******************************************************************************/
+
           if (constraints.maxWidth > 600) {
             return Row(children: [
               //left side column
@@ -938,28 +945,80 @@ class MenuDisplay extends StatelessWidget {
                         decoration: shadowEdge,
                         child: Stack(
                           children: [
-                            
-                        
                             Card(
                               shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               elevation: 10,
                               child: Container(
                                 alignment: Alignment(0.0, 1.0),
                                 height: 500,
                                 width: constraints.maxWidth * .75,
                                 color: barBBlack,
-                                
-                                child: Column(
-                                  //crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(child: Image.asset("lib/images/" + dimage, ),),
-                                    RBowFont(
-                                      dname,
-                                      40,
+                                child: SingleChildScrollView(
+                                  child: Card(
+                                    elevation: 10,
+                                    color: Colors.black45,
+                                    child: Column(
+                                      //crossAxisAlignment: CrossAxisAlignment.start,
+
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          child: Container(
+                                            margin: EdgeInsets.all(10),
+                                            child: Column(
+                                              children: <Widget>[
+                                                ClipRRect(
+                                                  //rounds corners of image
+
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  //imports image from menu class
+                                                  child: Container(
+                                                    child: Image.asset(
+                                                      "lib/images/" + dimage,
+                                                      height: cardDimen,
+                                                      width: cardDimen,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    RBowFont(
+                                                      dname,
+                                                      40,
+                                                    ),
+                                                    Row(children: [
+                                                      Spacer(
+                                                        flex: 3,
+                                                      ),
+                                                      RBowFont(
+                                                          "Price:   " + dprice,
+                                                          20),
+                                                      Spacer(flex: 1),
+                                                      RBowFont(
+                                                          "Happy Hour:   " +
+                                                              dhhprice,
+                                                          20),
+                                                      Spacer(
+                                                        flex: 3,
+                                                      ),
+                                                    ]),
+                                                    RBowFont(
+                                                      ddescription,
+                                                      20,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    RBowFont("Price: " + dprice, 20),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -1013,29 +1072,44 @@ class MenuDisplay extends StatelessWidget {
   }
 }
 
-/*
-    
-    
-    Column(children: [
-      HeaderFull(widthhh: 200, title: 'MENU'),
-      Container(
-          child: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text("back"),
-          ),
-          Image.asset("lib/images/" + dimage),
-          Text(dname),
-          Row(
-            children: [
-              Text("PRICE: " + dprice),
-              Text("Happy hour: " + dhhprice)
-            ],
-          )
-        ],
-      ))
-    ]);
-*/
+// ignore: must_be_immutable
+class HomeLarge extends StatelessWidget {
+  final height;
+  final width;
+  int pageDecides;
+  HomeLarge({this.width, this.height});
+
+  @override
+
+  // ignore: missing_return
+  Widget build(BuildContext context) {
+    //determines grid size based on window size at current moment
+    if (width.maxWidth > 600) {
+      if (width.maxWidth > 600 && width.maxWidth <= 1100) {
+        pageDecides = 1;
+      }
+
+      if (width.maxWidth > 1100) {
+        pageDecides = 2;
+      }
+    //retrieves current day of the week for specials
+
+
+      return Container(
+        color: Colors.grey[850],
+        width: width.maxWidth * 0.75,
+        height: height,
+        //color: Colors.pink,
+
+        child: GridView(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: pageDecides),
+          children: [
+            Text(currentTime),
+            Image.asset("lib/eventImage/leather.jpg"),
+          ],
+        ),
+      );
+    }
+  }
+}

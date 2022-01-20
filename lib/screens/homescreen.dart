@@ -18,14 +18,7 @@ class HomeScreen extends StatelessWidget {
               HeaderFull(widthhh: constraints, title: 'Home'),
 
               //MIDDLE SECTION
-              Container(
-                height: 500,
-                width: constraints.maxWidth * 0.75,
-                color: Colors.amber,
-                child: Center(
-                  child: Text('Main Content'),
-                ),
-              ),
+              HomeLarge(width: constraints, height: 500),
               //Footer Widget
               FooterFull(widthhh: constraints, title: 'Home'),
             ],
